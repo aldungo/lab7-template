@@ -1,6 +1,6 @@
 # Programming Fundamentals I - Fall 2025
 
-## Lab Assignment #6: Random Median
+## Lab Assignment #7: City Sorter
 
 *Due at 11:59 pm the night before the next lab session*
 
@@ -8,99 +8,109 @@
 
 ## Purpose
 
-Data analysts want to prepare some random samples around the median (middle) value of a range. You are tasked with preparing the initial code for this application. This program focuses on the following concepts:
+A delivery company is developing its own address catalog. Part of this application allows users to select locations to deliver packages. To do this efficiently, the catalog must be sorted. You will begin writing a simple algorithm to sort three cities by name. This lab focuses on the following concepts:
 
-• Using `Math.random()` to generate numbers in any range
+• Comparing Strings using methods from the String class
+
+• Using logical operators to build more complex boolean expressions
 
 ---
 
-## In-Class 6
+## In-Class Lesson
 
-Let's consider a simpler case first. Suppose the user wants to generate a random number by specifying the smallest and largest possible values within that range.
+To understand the basics of this sorting algorithm, write a program that accepts **two cities** from the user and sorts those two cities in alphabetical order. Use the `compareTo` method from the String class to make a comparison between the cities.
 
-Write a program that allows the user to choose two integers: the first input specifies the smallest possible random value, and the second input specifies the largest possible random value. Use those two numbers to determine the amount to multiply by and the amount to add to properly generate a random number in the user's requested range.
+The `compareTo` method returns a number indicating the difference in the Unicode values of the differing characters. Make sure this number is compared to another number that can be used to determine which city comes before the other alphabetically.
+
+**Practice Exercise:** Write a simple program that:
+1. Prompts the user to enter two city names
+2. Uses `compareToIgnoreCase()` to compare them
+3. Prints the cities in alphabetical order using an if-else statement
+
+This simpler two-city comparison prepares you for the main lab assignment where you'll sort three cities.
 
 ---
 
 ## Task
 
-Create a project called `RandomMedian_FirstName_LastName` or `Lab6_FirstName_LastName`. Remember to include comments summarizing the program.
+Create a project called `CitySorter_FirstName_LastName` or `Lab7_FirstName_LastName`. Remember to include comments summarizing the program.
 
 ### Requirements
 
 1. **Declare a Scanner** that accepts input from the keyboard.
 
-2. **Declare the following four variables** in your program:
+2. **Declare the following three variables** in your program:
 
-   • A variable of type `double` that will hold the median of the range
+   • Three variables of type `String` that will hold three different cities the user enters
 
-   • A variable of type `int` that will hold the size of the range
+   *Note: You may also consider three variables of type boolean to hold comparisons between the cities.*
 
-   • A variable of type `int` that will hold the amount to shift the randomly generated range
+3. **Prompt the user three times** to enter each of the three cities. Use the appropriate method of the Scanner class to assign each of the user's inputs to the appropriate String variable.
 
-   • A variable of type `int` that will hold the final randomly generated number
+4. **Determine the alphabetical order** of the cities using comparisons. The order of the cities will depend on the order of the statements to print those cities to the console. To determine the order to print the cities in, you will need to compare the cities using the appropriate method of the String class. 
 
-   *Note: This set of variables is only a recommendation. You may include additional variables or remove variables as needed.*
+   **Assume that case does not matter** and that the user enters three different cities. You must do **comparisons between all pairs of cities** to determine the correct order.
 
-3. **Include a prompt** to the user to input the median of the range. Use the appropriate method of the Scanner class to assign the user's input to the appropriate variable.
+   For example, to determine if the last city that the user enters comes first alphabetically, compare this city to the other two cities. If the last city entered by the user does come first alphabetically, print that city and then compare the remaining two cities. Whichever comes second alphabetically is printed next, and then whichever comes last alphabetically is printed last.
 
-4. **Include a second prompt** to the user to input the size of the range. Use the appropriate method of the Scanner class to assign the user's input to the appropriate variable.
 
-5. **Use the user's two inputs** to calculate the amount to shift the randomly generated range. Keep in mind that this shift will also be equal to the smallest possible random value. Make sure these calculations account for both an even range and an odd range.
+## Implementation Notes
 
-6. **Calculate the final randomly generated number** using the result of `Math.random()`, the size of the range, and the amount to shift.
-
-7. **Print the randomly generated number** to the console.
+- Use the `compareToIgnoreCase()` method or convert strings to the same case before comparing to ensure case-insensitive comparisons
+- When `string1.compareTo(string2)` returns a negative number, `string1` comes before `string2` alphabetically
+- When `string1.compareTo(string2)` returns a positive number, `string2` comes before `string1` alphabetically
+- Use logical operators (&&, ||) to build complex boolean expressions for determining order
+- Your program must handle all six possible orderings of three cities
 
 ---
 
-## Assumptions
+## Running Your Program
 
-Assume the user provides valid inputs. For consecutive numbers, the median must either be an integer or .5 value, such as 1.5, 2.5, etc. If the user provides an integer, the size of the range must be an odd number. If the user provides a .5 value, the size of the range must be an even number.
+### Method 1: Using the Terminal
+1. Open the terminal in your codespace (Terminal → New Terminal)
+2. Compile your program:
+   ```bash
+   javac Lab7_YourFirstName_YourLastName.java
+   ```
+3. Run your program:
+   ```bash
+   java Lab7_YourFirstName_YourLastName
+   ```
 
-### Example Cases and Program Flow
+Replace `Lab7_YourFirstName_YourLastName.java` with your actual file name. If you are running the in-class exercise, use the corresponding file name instead.
 
-**Case 1:** The user enters 9 for the median and 3 for the size. The following is the range of possible outputs:
+---
+
+## Example Program Flow
+
 ```
-8, 9, 10
-```
-The following is the program flow for this program:
-```
-Please enter the median for this random range: 9
-Please enter the size of this random range: 3
-The random number is 8
+Enter the first city: Dallas
+Enter the second city: Austin
+Enter the third city: Houston
+
+Cities in alphabetical order:
+Austin
+Dallas
+Houston
 ```
 
-**Case 2:** The user enters 13.5 for the median and 4 for the size. The following is the range of possible outputs:
-```
-12, 13, 14, 15
-```
-The following is the program flow for this program:
-```
-Please enter the median for this random range: 13.5
-Please enter the size of this random range: 4
-The random number is 12
-```
- 
-**NOTE:** Keep in mind the result is randomly generated, so the output may differ on each run of the program.
+---
 
 ## Grading Criteria
 
 - **Comment summarizing the program** (5 points)
-- **Importing and declaring the Scanner** (5 points)
-- **Appropriate variable declarations** (15 points total)
-- **Two requests for user input** (5 points each, 10 points total)
-- **Correctly calculating the shift for the random number** (40 points)
-- **Correctly calculating the randomly generated number** (15 points)
-- **Output of the result** (10 points)
+- **Importing and declaring the Scanner class** (2 points)
+- **Requests for the user's input** (9 points total)
+- **Properly comparing and printing the three Strings in alphabetical order** (14 points for each of the six possible initial orderings provided by the user = 84 points total)
 
 **Total: 100 points**
 
 ---
 
-💡 **Fun Tip:** Consider taking a screenshot of your terminal output after running your program! Then, try to figure out how to add that screenshot file to your repository directory as part of your lab submission. (This is a great way to document your work and practice using GitHub for more than just code!)
+💡 **Fun Tip:** Consider taking a screenshot of your terminal output after running your program with different city combinations! This helps you verify that all six possible orderings work correctly.
 
 ---
+
 
 ## Commit Your Changes
 ### Step 1. Use VS Code's Source Control panel:
@@ -114,9 +124,6 @@ After pushing your changes, visit your assignment repository on GitHub Classroom
 ### Step 3: Submit to Blackboard Assignment
 Once you have verified your submission on GitHub Classroom, copy the URL of your assignment repository and submit this GitHub repository link to Blackboard as confirmation that you are DONE.
 
-**InClass6_FirstName_LastName.java (Participation points):**
-Full credit is awarded for completing and submitting the in-class exercise, regardless of output or minor errors.
+**Excellent work!** You've reached Lab 7, and this assignment introduces you to string comparison and sorting algorithms. Working with the `compareTo` method and logical operators will help you understand how computers sort text data. This is a fundamental skill that applies to databases, search engines, and countless other applications. Remember to test your program with different city orderings to ensure it handles all cases correctly. Breaking down the problem into smaller comparisons and using logical thinking will lead you to success!
 
-**Excellent work!** You've reached Lab 6, and this assignment introduces you to the powerful world of random number generation with `Math.random()`. This lab challenges you to think mathematically about ranges, medians, and how to transform random values to fit specific requirements. Working with both integer and decimal medians will stretch your problem-solving skills and deepen your understanding of data types and calculations. Remember, every programmer has wrestled with mathematical logic—embrace the challenge, break down the problem step by step, and don't hesitate to test your code frequently. You're building the foundation for more advanced programming concepts!
-
-**Important:** This lab template includes `InClass6_FirstName_LastName.java` with helpful comment guidance to get you started. Focus on completing both the in-class exercise and the main lab assignment. Do NOT edit or tamper with any test files if they appear in your repository. These files are used for autograding and checking your work.
+**Important:** Focus on completing the lab assignment. Do NOT edit or tamper with any test files, markdown files, or class files if they appear in your repository.
